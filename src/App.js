@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import Canvas from './components/Canvas';
+import Sidebar from './components/Sidebar';
+
+function AppOld() {
+  return (
+    <div>
+      <Sidebar />
+
+      <div className='md:pl-64'>
+        <div className='m-2 bg-gray-100 h-screen flex flex-col'>
+          <main className='flex-1 '>
+            <Canvas />
+          </main>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Sidebar />
+
+      <div className='md:pl-64'>
+        <div className='m-2 bg-gray-100 h-screen flex flex-col'>
+          <main className='flex-1 '>
+            <Canvas />
+          </main>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Colors
+$bg-color: #f0f0f0;
+$dot-color: rgba(109, 109, 109, 0.5);
+
+// Dimensions
+$dot-size: 2px;
+$dot-space: 30px;
+
+.drop-area {
+  background: linear-gradient(
+        -90deg,
+        $bg-color ($dot-space - $dot-size),
+        transparent 1%
+      )
+      center,
+    linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+    $dot-color;
+  background-size: $dot-space $dot-space;
+}
