@@ -39,9 +39,41 @@ input:focus-visible {
 }
 
 .search-input {
-  @apply block pl-10 w-full h-8 border-0 border-b border-transparent bg-gray-50;
+  @apply block pl-10 w-full h-8 border-b border-transparent bg-gray-50;
+}
 
-  :focus {
-    @apply border-red-600 ring-0 outline-none;
-  }
+.search-input:focus {
+  @apply border-red-600 ring-0 outline-none;
+}
+
+.c-label {
+  @apply block w-full h-full text-xl font-medium text-gray-700;
+}
+
+.c-input {
+  @apply block p-2 w-full h-full rounded border border-gray-300 border-transparent bg-gray-50 text-lg;
+}
+
+.c-input:focus {
+  @apply border-gray-400 ring-0 outline-none;
+}
+
+.c-button {
+  @apply inline-flex w-full h-full items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-gray-600;
+}
+
+.c-button:hover {
+  @apply bg-gray-800;
+}
+
+.c-button:focus {
+  @apply outline-none ring-2 ring-offset-2 ring-gray-500;
+}
+
+.icon-handle {
+  @apply rounded text-center items-center justify-center m-2 cursor-pointer;
+}
+
+.icon-handle:hover {
+  @apply bg-gray-300;
 }

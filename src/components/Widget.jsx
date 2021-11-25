@@ -56,14 +56,12 @@ export default function Widget({ item }) {
             role='Handle'
             ref={(node) => drag(preview(node))}
             style={{ opacity: isDragging ? 0.5 : 1 }}
-            className='rounded text-center items-center justify-center m-2 cursor-pointer hover:bg-gray-300'
+            className='icon-handle'
           >
-            <div className='inline-flex items-center justify-center h-10 w-10  '>
-              <span className='font-medium leading-none text-red-900'>
-                {item.label}
-              </span>
+            <div className='inline-flex items-center justify-center h-10 w-10'>
+              {item.label}
             </div>
-            <span className='text-sm text-gray-700'>{item.name}</span>
+            <span className='text-sm uppercase'>{item.name}</span>
           </div>
         </>
       )}
