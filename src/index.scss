@@ -26,6 +26,10 @@ $dot-space: 30px;
   background-size: $dot-space $dot-space;
 }
 
+.screen {
+  height: calc(100vh - 16px);
+}
+
 /////////////////////////////
 // tailwind custom classes //
 /////////////////////////////
