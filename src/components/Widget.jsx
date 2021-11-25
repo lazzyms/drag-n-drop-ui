@@ -1,5 +1,6 @@
 import { useDrag } from 'react-dnd';
 
+// common style for canvas widget
 const dropAreaWidgetStyle = (item) => {
   return {
     position: 'absolute',
@@ -25,9 +26,11 @@ export default function Widget({ item }) {
       isDragging: monitor.isDragging()
     })
   }));
+
   return (
     <>
       {item.inDropArea ? (
+        // Draggable canvas widget
         <div
           role='Handle'
           data-key={item.key}
@@ -37,6 +40,7 @@ export default function Widget({ item }) {
             opacity: isDragging ? 0.5 : 1
           }}
         >
+          {/* Conditional form element rendering */}
           {item.type === 'label' ? (
             <label {...item.args}>{item.name}</label>
           ) : item.type === 'input' ? (
@@ -46,6 +50,7 @@ export default function Widget({ item }) {
           )}
         </div>
       ) : (
+        // Draggable icon widget
         <>
           <div
             role='Handle'

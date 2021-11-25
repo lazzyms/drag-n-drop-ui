@@ -1,23 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import Widget from './Widget';
 
 export default function Canvas() {
+  // Canvas board state variable
   const [board, setBoard] = useState([]);
-  const boardRef = useRef(null);
+
+  // Method to stick element on canvas grid
   const snapToGrid = ({ x, y }) => {
     const snappedX = Math.round(x / 32) * 32;
     const snappedY = Math.round(y / 32) * 32;
     return { x: snappedX, y: snappedY };
   };
 
+  // Collision detection function
   const isColliding = (object_1, object_2) =>
     object_1.left < object_2.left + object_2.width &&
     object_1.left + object_1.width > object_2.left &&
     object_1.top < object_2.top + object_2.height &&
     object_1.top + object_1.height > object_2.top;
 
+  // update css on collision
   const updateItem = (object_1, object_2, wids) => {
     if (isColliding(object_1, object_2)) {
       wids.bg = 'red';
@@ -28,10 +32,13 @@ export default function Canvas() {
     }
     return wids;
   };
+
   const [{ canDrop, isOver }, drop] = useDrop(
     () => ({
       accept: 'BOX',
       drop: (item, monitor) => {
+        // this method get called on drop of widget
+        // it gets the position and set it to board array
         const alpha = snapToGrid(monitor.getSourceClientOffset());
         const top = alpha.y;
         const left = alpha.x;
@@ -62,6 +69,7 @@ export default function Canvas() {
         return;
       },
       canDrop: (item, monitor) => {
+        // Check weather the widget can be dropped on canvas or it collides with other
         if (board && board.length > 0) {
           const alpha = snapToGrid(monitor.getSourceClientOffset());
           const object_1 = {
@@ -97,6 +105,7 @@ export default function Canvas() {
         }
       },
       hover: (item, monitor) => {
+        // Checks the collision of current widget with other widget on canvas
         if (board && board.length > 0) {
           const alpha = snapToGrid(monitor.getSourceClientOffset());
 
@@ -134,6 +143,7 @@ export default function Canvas() {
   );
 
   useEffect(() => {
+    // if the dropping is done, set all the board widget style to normal
     if (isOver === false) {
       setBoard((items) => {
         return items.map((itm) => {
@@ -157,9 +167,8 @@ export default function Canvas() {
           {canDrop ? 'Release to drop' : 'Drag and Drop widget here'}
         </span>
       )}
-      <div ref={boardRef}>
-        {board && board.map((item) => <Widget key={item.key} item={item} />)}
-      </div>
+      {/* TO make the widget on canvas draggable */}
+      {board && board.map((item) => <Widget key={item.key} item={item} />)}
     </div>
   );
 }

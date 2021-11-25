@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+//////////////////////////////
+// Canvas dotted background //
+//////////////////////////////
+
 // Colors
 $bg-color: #f0f0f0;
 $dot-color: rgba(109, 109, 109, 0.5);
@@ -20,4 +24,20 @@ $dot-space: 30px;
     linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
     $dot-color;
   background-size: $dot-space $dot-space;
+}
+
+/////////////////////////////
+// tailwind custom classes //
+/////////////////////////////
+
+input:focus-visible {
+  outline: unset !important;
+}
+
+.search-input {
+  @apply block pl-10 w-full h-8 border-0 border-b border-transparent bg-gray-50;
+
+  :focus {
+    @apply border-red-600 ring-0 outline-none;
+  }
 }
