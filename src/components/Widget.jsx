@@ -6,8 +6,8 @@ const dropAreaWidgetStyle = (item) => {
     zIndex: 50,
     top: item.top,
     left: item.left,
-    height: '40px',
-    width: '200px',
+    height: `${item.style.height + 0.8}px`,
+    width: `${item.style.width + 0.8}px`,
     backgroundColor: item.bg,
     border: item.border ? item.border : '1px solid black',
     padding: '1px 3px'

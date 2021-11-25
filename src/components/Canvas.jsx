@@ -18,6 +18,16 @@ export default function Canvas() {
     object_1.top < object_2.top + object_2.height &&
     object_1.top + object_1.height > object_2.top;
 
+  const updateItem = (object_1, object_2, wids) => {
+    if (isColliding(object_1, object_2)) {
+      wids.bg = 'red';
+      wids.border = '1px solid red';
+    } else {
+      wids.bg = '';
+      wids.border = '';
+    }
+    return wids;
+  };
   const [{ canDrop, isOver }, drop] = useDrop(
     () => ({
       accept: 'BOX',
@@ -57,24 +67,28 @@ export default function Canvas() {
           const object_1 = {
             left: alpha.x,
             top: alpha.y,
-            height: 40,
-            width: 250
+            height: item.style.height,
+            width: item.style.width
           };
           let shouldDrop = false;
           board.every((wids) => {
             const object_2 = {
               left: wids.left,
               top: wids.top,
-              height: 40,
-              width: 250
+              height: wids.style.height,
+              width: wids.style.width
             };
-            if (isColliding(object_1, object_2)) {
-              shouldDrop = false;
-
-              return false;
+            if (item.inDropArea) {
+              if (item.key !== wids.key) {
+                shouldDrop = !isColliding(object_1, object_2);
+                return false;
+              } else {
+                shouldDrop = true;
+                return true;
+              }
             } else {
-              shouldDrop = true;
-              return true;
+              shouldDrop = !isColliding(object_1, object_2);
+              return false;
             }
           });
           return shouldDrop;
@@ -85,28 +99,28 @@ export default function Canvas() {
       hover: (item, monitor) => {
         if (board && board.length > 0) {
           const alpha = snapToGrid(monitor.getSourceClientOffset());
+
           const object_1 = {
             left: alpha.x,
             top: alpha.y,
-            height: 40,
-            width: 250
+            height: item.style.height,
+            width: item.style.width
           };
           setBoard((items) => {
             return items.map((wids) => {
               const object_2 = {
                 left: wids.left,
                 top: wids.top,
-                height: 40,
-                width: 250
+                height: wids.style.height,
+                width: wids.style.width
               };
-              if (isColliding(object_1, object_2)) {
-                wids.bg = 'red';
-                wids.border = '1px solid red';
-              } else {
-                wids.bg = '';
-                wids.border = '';
+              if (item.inDropArea) {
+                if (item.key !== wids.key) {
+                  return updateItem(object_1, object_2, wids);
+                }
+                return wids;
               }
-              return wids;
+              return updateItem(object_1, object_2, wids);
             });
           });
         }

@@ -16,8 +16,12 @@ const widgets = [
     type: 'label',
     name: 'Text',
     inDropArea: false,
+    style: {
+      height: 32,
+      width: 48
+    },
     args: {
-      className: 'block text-lg font-medium text-gray-700 h-8'
+      className: 'block w-full h-full text-xl font-medium text-gray-700'
     }
   },
   {
@@ -33,11 +37,15 @@ const widgets = [
     type: 'input',
     name: 'Input',
     inDropArea: false,
+    style: {
+      height: 32,
+      width: 160
+    },
     args: {
       type: 'text',
       placeholder: 'Sample text',
       className:
-        'block w-full h-8 p-2 rounded border border-gray-300 border-transparent bg-gray-50 text-lg focus:border-gray-400 focus:ring-0 sm:text-sm focus:outline-none '
+        'block p-2 w-full h-full rounded border border-gray-300 border-transparent bg-gray-50 text-lg focus:border-gray-400 focus:ring-0 sm:text-sm focus:outline-none '
     }
   },
   {
@@ -53,10 +61,14 @@ const widgets = [
     type: 'button',
     name: 'Button',
     inDropArea: false,
+    style: {
+      height: 32,
+      width: 64
+    },
     args: {
       type: 'button',
       className:
-        'inline-flex items-center h-8 px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+        'inline-flex w-full h-full items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
     }
   }
 ];
