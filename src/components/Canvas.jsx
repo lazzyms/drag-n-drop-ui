@@ -88,15 +88,25 @@ export default function Canvas() {
             };
             if (item.inDropArea) {
               if (item.key !== wids.key) {
-                shouldDrop = !isColliding(object_1, object_2);
-                return false;
+                if (isColliding(object_1, object_2)) {
+                  shouldDrop = false;
+                  return false;
+                } else {
+                  shouldDrop = true;
+                  return true;
+                }
               } else {
                 shouldDrop = true;
                 return true;
               }
             } else {
-              shouldDrop = !isColliding(object_1, object_2);
-              return false;
+              if (isColliding(object_1, object_2)) {
+                shouldDrop = false;
+                return false;
+              } else {
+                shouldDrop = true;
+                return true;
+              }
             }
           });
           return shouldDrop;
